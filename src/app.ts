@@ -7,14 +7,52 @@ const app = express()
 
 app.use(bodyParser.json())
 
-app.post(`/card`, async (req, res) => {
-  const result = await prisma.card.create({
-    data: {
-      ...req.body,
-    },
-  })
-  res.json(result)
+app.post(`/cards`, async (req, res) => {
+  // try{
+  //   const result = await prisma.card.create({data: {...req.body}})
+  //   res.json(result)
+  // }catch (e){
+  //   res.status(500).json({msg:"error",error:e})
+  // }
 })
+
+app.get(`/cards`, async (req, res) => {
+  try{
+    const result = await prisma.card.findMany({where:{}})
+    res.json(result)
+  }catch (e) {
+    res.status(500).json({msg:"error",error:e})
+  }
+})
+
+app.get(`/cards/getTransactionsByUUID/:id`, async (req, res) => {
+  console.log(req.params)
+  try{
+    const result = await prisma.transaction.findMany({include: {card: true}})
+    res.json(result)
+  }catch (e) {
+    res.status(500).json({msg:"error",error:e})
+  }
+})
+
+app.post(`/transactions`, async (req, res) => {
+  try{
+    const result = await prisma.transaction.create({data: {...req.body}})
+    res.json(result)
+  }catch (e){
+    res.status(500).json({msg:"error",error:e})
+  }
+})
+
+app.get(`/transactions`, async (req, res) => {
+  try{
+    const result = await prisma.transaction.findMany()
+    res.json(result)
+  }catch (e) {
+    res.status(500).json({msg:"error",error:e})
+  }
+})
+
 
 // app.post(`/transaction`, async (req, res) => {
 //   const { title, content, authorEmail } = req.body
@@ -87,8 +125,8 @@ app.post(`/card`, async (req, res) => {
 //   res.json(draftPosts)
 // })
 
-const server = app.listen(3000, () =>
+const server = app.listen(5000, () =>
   console.log(
-    '🚀 Server ready at: http://localhost:3000\n⭐️ See sample requests: http://pris.ly/e/ts/rest-express#3-using-the-rest-api',
+    '🚀 Server ready at: http://localhost:5000\n⭐️ See sample requests: http://pris.ly/e/ts/rest-express#3-using-the-rest-api',
   ),
 )
