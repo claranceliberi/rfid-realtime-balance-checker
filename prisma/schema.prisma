@@ -11,25 +11,24 @@ generator client {
 }
 
 model Card {
-  id            Int     @id @default(autoincrement())
-  UUID          Int     @unique
-  balance       Int
-  created_at    DateTime    @default(now())
-  updated_at    DateTime    @default(now())
-  active        Boolean @default(false)
+  id          Int           @id @default(autoincrement())
+  card_UUID   Int           @unique
+  balance     Int
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @default(now())
+  active      Boolean       @default(true)
+  Transaction Transaction[]
 }
 
 model Transaction {
-  id                Int     @id @default(autoincrement())
-  card_UUID         Int
-  card              Card    @relation(fields: [card_UUID], references: [UUID])
-  transaction_type  TransactionType
-  ammount           Int
-  created_at        DateTime    @default(now())
-  updated_at        DateTime    @default(now())
-  active            Boolean @default(false)
+  id               Int             @id @default(autoincrement())
+  card_UUID        Int
+  card             Card            @relation(fields: [card_UUID], references: [card_UUID])
+  transaction_type TransactionType
+  ammount          Int
+  created_at       DateTime        @default(now())
+  updated_at       DateTime        @default(now())
 }
-
 
 enum TransactionType {
   DEPOSIT
