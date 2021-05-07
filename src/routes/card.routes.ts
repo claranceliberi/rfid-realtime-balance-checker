@@ -7,7 +7,7 @@ class cardRoutes{
     app : Express
     prisma = new PrismaClient()
 
-    constructor(app) {
+    constructor(app:Express) {
         this.app = app
         const card = new cardController(this.prisma.transaction)
 

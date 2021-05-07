@@ -1,57 +1,60 @@
 import { PrismaClient } from '@prisma/client'
 import * as bodyParser from 'body-parser'
 import express from 'express'
+import cardRoutes from "./routes/card.routes";
 
 const prisma = new PrismaClient()
 const app = express()
 
 app.use(bodyParser.json())
 
-app.post(`/cards`, async (req, res) => {
-  // try{
-  //   const result = await prisma.card.create({data: {...req.body}})
-  //   res.json(result)
-  // }catch (e){
-  //   res.status(500).json({msg:"error",error:e})
-  // }
-})
 
-app.get(`/cards`, async (req, res) => {
-  try{
-    const result = await prisma.card.findMany({where:{}})
-    res.json(result)
-  }catch (e) {
-    res.status(500).json({msg:"error",error:e})
-  }
-})
 
-app.get(`/cards/getTransactionsByUUID/:id`, async (req, res) => {
-  console.log(req.params)
-  try{
-    const result = await prisma.transaction.findMany({include: {card: true}})
-    res.json(result)
-  }catch (e) {
-    res.status(500).json({msg:"error",error:e})
-  }
-})
-
-app.post(`/transactions`, async (req, res) => {
-  try{
-    const result = await prisma.transaction.create({data: {...req.body}})
-    res.json(result)
-  }catch (e){
-    res.status(500).json({msg:"error",error:e})
-  }
-})
-
-app.get(`/transactions`, async (req, res) => {
-  try{
-    const result = await prisma.transaction.findMany()
-    res.json(result)
-  }catch (e) {
-    res.status(500).json({msg:"error",error:e})
-  }
-})
+// app.post(`/cards`, async (req, res) => {
+//   try{
+//     const result = await prisma.card.create({data: {...req.body}})
+//     res.json(result)
+//   }catch (e){
+//     res.status(500).json({msg:"error",error:e})
+//   }
+// })
+//
+// app.get(`/cards`, async (req, res) => {
+//   try{
+//     const result = await prisma.card.findMany({where:{}})
+//     res.json(result)
+//   }catch (e) {
+//     res.status(500).json({msg:"error",error:e})
+//   }
+// })
+//
+// app.get(`/cards/getTransactionsByUUID/:id`, async (req, res) => {
+//   console.log(req.params)
+//   try{
+//     const result = await prisma.transaction.findMany({include: {card: true}})
+//     res.json(result)
+//   }catch (e) {
+//     res.status(500).json({msg:"error",error:e})
+//   }
+// })
+//
+// app.post(`/transactions`, async (req, res) => {
+//   try{
+//     const result = await prisma.transaction.create({data: {...req.body}})
+//     res.json(result)
+//   }catch (e){
+//     res.status(500).json({msg:"error",error:e})
+//   }
+// })
+//
+// app.get(`/transactions`, async (req, res) => {
+//   try{
+//     const result = await prisma.transaction.findMany()
+//     res.json(result)
+//   }catch (e) {
+//     res.status(500).json({msg:"error",error:e})
+//   }
+// })
 
 
 // app.post(`/transaction`, async (req, res) => {

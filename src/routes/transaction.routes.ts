@@ -6,12 +6,12 @@ class transactionRoutes{
     app : Express
     prisma = new PrismaClient()
 
-    constructor(app) {
+    constructor(app:Express) {
         this.app = app
         const transaction = new transactionController(this.prisma.transaction)
 
         this.app.get('/',transaction.getAll)
-        this.app.get('/',transaction.getByCard)
+        this.app.get('/:id',transaction.getByCard)
         this.app.post('/',transaction.create)
     }
 }
