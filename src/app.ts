@@ -2,13 +2,12 @@ import { PrismaClient } from '@prisma/client'
 import * as bodyParser from 'body-parser'
 import express from 'express'
 import cardRoutes from "./routes/card.routes";
+import transactionRoutes from "./routes/transaction.routes";
 
 const prisma = new PrismaClient()
 const app = express()
 
 app.use(bodyParser.json())
-
-
 
 // app.post(`/cards`, async (req, res) => {
 //   try{
