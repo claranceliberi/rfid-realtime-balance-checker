@@ -9,9 +9,8 @@ services:
             - POSTGRES_USER=liberi
             - POSTGRES_PASSWORD=liberi
         volumes:
-            - ./postgres.conf:/etc/postgresql/postgresql.conf
-        command: postgres -c config_file=/etc/postgresql/postgresql.conf
+            - postgres_rfid:/var/lib/postgress
         restart: always
 # Names our volume
 volumes:
-  my-db:
+  postgres_rfid:

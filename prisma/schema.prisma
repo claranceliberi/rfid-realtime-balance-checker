@@ -12,7 +12,7 @@ generator client {
 
 model Card {
   id          Int           @id @default(autoincrement())
-  card_UUID   Int           @unique
+  card_UUID   String        @unique
   balance     Int
   created_at  DateTime      @default(now())
   updated_at  DateTime      @default(now())
@@ -22,7 +22,7 @@ model Card {
 
 model Transaction {
   id               Int             @id @default(autoincrement())
-  card_UUID        Int
+  card_UUID        String
   card             Card            @relation(fields: [card_UUID], references: [card_UUID])
   transaction_type TransactionType
   ammount          Int
