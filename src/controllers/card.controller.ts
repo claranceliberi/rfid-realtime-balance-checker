@@ -25,3 +25,6 @@ class cardController{
         }
     }
 }
+
+
+export default cardController

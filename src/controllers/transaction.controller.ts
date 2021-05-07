@@ -1,4 +1,5 @@
 import {Request, Response} from "express";
+import exp from "constants";
 
 class transactionController{
      prisma
@@ -34,3 +35,5 @@ class transactionController{
         }
     }
 }
+
+export default transactionController
