@@ -1,13 +1,15 @@
 <template>
 <div>
-  home
+  <ul v-for="transaction in transactions" :key="transactions.card_UUID+transactions.created_at">
+    <li>{{transaction.card_UUID}}</li>
+  </ul>
 </div>
 </template>
 
 <script lang="ts" setup>
 import {ref} from 'vue'
 
-const data:object = ref({})
+const transactions:object = ref([])
 
 
 function fetchTransaction(){
@@ -16,7 +18,7 @@ function fetchTransaction(){
   fetch(link)
   .then(d => {
     d.json().then(d => {
-      data.value = d
+      transactions.value = d
     }).catch(e => {
       console.log(e)
     })
@@ -26,6 +28,5 @@ function fetchTransaction(){
 }
 
 fetchTransaction()
-
 
 </script>
