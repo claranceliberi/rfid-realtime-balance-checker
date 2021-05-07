@@ -8,10 +8,12 @@ class transactionRoutes{
 
     constructor(app) {
         this.app = app
-        const transactionController = new transactionController(this.prisma.transaction)
+        const transaction = new transactionController(this.prisma.transaction)
 
-        this.app.get('/',transactionController.getAll)
-        this.app.get('/',transactionController.getByCard)
-        this.app.post('/',transactionController.create)
+        this.app.get('/',transaction.getAll)
+        this.app.get('/',transaction.getByCard)
+        this.app.post('/',transaction.create)
     }
 }
+
+export default transactionController
