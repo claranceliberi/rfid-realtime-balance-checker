@@ -73,7 +73,7 @@ app.post(`/transactions`, async (req, res) => {
 
 app.get(`/transactions`, async (req, res) => {
   try{
-    const result = await prisma.transaction.findMany()
+    const result = await prisma.transaction.findMany({include:{card:true}})
     res.json(result)
   }catch (e) {
     res.status(500).json({msg:"error",error:e})
