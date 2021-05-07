@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node /dist/app.js",
     "dev": "export DEBUG=* && nodemon src/app.ts",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "ts": "tsc",
+    "prisma": "prisma"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,7 @@
   },
   "homepage": "https://github.com/claranceliberi/rfid-realtime-balance-checker#readme",
   "dependencies": {
+    "@prisma/client": "^2.22.0",
     "body-parser": "^1.19.0",
     "debug": "^4.3.1",
     "express": "^4.17.1",
