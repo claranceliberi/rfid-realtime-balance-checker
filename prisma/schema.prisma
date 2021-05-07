@@ -9,3 +9,29 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model Card {
+  id            Int     @id @default(autoincrement())
+  UUID          Int     @unique
+  balance       Int
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @default(now())
+  active        Boolean @default(false)
+}
+
+model Transaction {
+  id                Int     @id @default(autoincrement())
+  card_UUID         Int
+  card              Card    @relation(fields: [card_UUID], references: [UUID])
+  transaction_type  TransactionType
+  ammount           Int
+  created_at        DateTime    @default(now())
+  updated_at        DateTime    @default(now())
+  active            Boolean @default(false)
+}
+
+
+enum TransactionType {
+  DEPOSIT
+  WITHDRAW
+}
